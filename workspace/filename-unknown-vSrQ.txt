@@ -1,0 +1,16 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HelloWorld;  // replace HelloWorld with your main project's namespace
+
+namespace HelloWorldTest
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+            Program obj= new Program();
+            Assert.AreEqual("Hello, World!", obj.Main());
+        }
+    }
+}
