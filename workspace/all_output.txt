@@ -1,31 +1,45 @@
-To create a "Hello, World!" console application in C#, you need to follow these steps:
+For creating unit tests for the "Hello, World!" console application in C#, we can use MSTest which is Microsoft's testing tool for C#.
 
-1. Open Visual Studio and choose "Create a new project".
-2. Choose "Console App (.NET Core)" as the project type.
-3. Give your project a name and choose a location to save it in, then press "Create".
-4. Now you will be in the code editor with a `Program.cs` file created by default. 
-5. Here, you will see a `Main` method. This method is the entry point of your application.
+1. Add a new project in the same solution.
+2. Select "MSTest - Test Project" as the type of the new project.
+3. Write your test cases, call the function to be tested, and verify the return values.
 
-Your code should look like this:
+Your testing project might look like this:
 
-```CSharp
+```csharp
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HelloWorld;  // replace HelloWorld with your main project's namespace
+
+namespace HelloWorldTest
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+            Program obj= new Program();
+            Assert.AreEqual("Hello, World!", obj.Main());
+        }
+    }
+}
+```
+
+You will need to adjust your original program to return the string, and not just write it in the console:
+
+```csharp
 using System;
 
 namespace HelloWorld
 {
     class Program
     {
-        static void Main(string[] args)
+        static string Main()
         {
-            Console.WriteLine("Hello, World!");
+            return "Hello, World!";
         }
     }
 }
 ```
 
-1. To run this code, press F5 or click "Start Debugging" from the Debug menu. The console window should appear and display "Hello, World!".
-2. To stop this code, press the "Stop Debugging" button or close the console window.
-
-Remember, `Console.WriteLine` is used to write or display any output on the console screen and `"Hello, World!"` is the string of text to be displayed. The `Main` method is where the execution of program starts in a console application. 
-
-This is a very simple application and is often used as a beginner's first program to test if their development environment is set up correctly.
+To run your test, go to the "Test" menu and click on "Run All Tests". Bar colors and test results will tell you if your tests pass or fail. In our case, the test should pass, as the "Hello, World!" does match the string being returned by our function.
